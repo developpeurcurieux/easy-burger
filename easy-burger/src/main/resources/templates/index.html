@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+    
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org" >
+    
+    <head>
+        <meta charset="utf-8" />
+        <title>Connection</title>
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" href="css/animate.css" />
+	<!-- Custom Stylesheet -->
+	<link rel="stylesheet" href="css/index.css" />
+        <script src="../static/js/jquery.min.js"></script>
+        
+    </head>
+    
+    
+<body>
+	<div class="container">
+		<div class="top">
+                    <h1 id="title" class="hidden"><span id="logo">Easy <span>Burger</span></span></h1>
+		</div>
+            <form action="#" th:action="@{contact-us}" th:object="${user}" method="post">
+		<div class="login-box animated fadeInUp">
+			<div class="box-header">
+				<h2>Se Connecter</h2>
+			</div>
+			<br/>
+                        <label for="password">CODE</label>
+			<br/>
+			<input type="password" id="password" th:field="*{mdp}"/>
+			<br/>
+			<input type="submit" value="Valider" />
+			<br/>
+                        
+			
+		</div>
+            </form>
+	</div>
+</body>
+
+<script>
+	$(document).ready(function () {
+    	$('#logo').addClass('animated fadeInDown');
+    	$("input:text:visible:first").focus();
+	});
+	$('#username').focus(function() {
+		$('label[for="username"]').addClass('selected');
+	});
+	$('#username').blur(function() {
+		$('label[for="username"]').removeClass('selected');
+	});
+	$('#password').focus(function() {
+		$('label[for="password"]').addClass('selected');
+	});
+	$('#password').blur(function() {
+		$('label[for="password"]').removeClass('selected');
+	});
+</script>
+
+</html>

@@ -1,0 +1,20 @@
+
+#comDiv {
+    display:none;
+}
+
+#comDiv:target{
+  
+    
+    display:block;
+    float:right;
+    
+     font-weight: bold;/*
+  position: absolute;  postulat de départ 
+   top: 50%; left: 50%;   à 50%/50% du parent référent  
+   transition: transform 5s;
+   transform: translate(-50%, -50%);*/
+  
+/*    transition: transform 3s;
+    transform: translate(50px, 50px);*/
+}

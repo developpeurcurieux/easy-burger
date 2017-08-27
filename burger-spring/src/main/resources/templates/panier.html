@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+    
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org" >
+          
+    <head th:replace="template :: head" />
+        
+        
+        
+    <body>
+        <header th:replace="template :: header" />
+            
+            
+        <div class="container spacer">  
+           
+           
+                
+                <h3>Détails de votre panier</h3>
+                    
+                    
+                    
+                <table class="table table-striped" >
+                    
+                    <thead>
+                        <tr>
+                            <th>Produit / Menu</th><th>Prix</th><th /><th>Quantité</th><th class="glyphicon glyphicon-trash" />
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="e : ${session.panier.commandes}">
+                            <td th:text="${e.produit.nom}"></td>
+                            <td th:text="${e.prix}"> €</td>
+                            <td><a th:href="@{/removeProduitPanier(idProduit=${e.produit.reference}, qte=1)}" class="btn btn-default btn-sm"> - </a></td>
+                            <td class="text-center" th:text="${e.quantite}" />
+                            <td><a th:href="@{/addProduitPanier(idProduit=${e.produit.reference}, qte=1)}" class="btn btn-default btn-sm"> + </a></td>
+                            <td><a class="glyphicon glyphicon-trash" th:href="@{/deleteAllProduits(idProduit=${e.produit.reference})}" /></td>
+                                
+                        </tr>
+                    </tbody>      
+                        
+                    <tfoot>
+                        
+                        <tr>
+                            
+                            <td align="left"><a th:href="@{/}" class="btn btn-warning .btn-primary.gradient:active, .btn-primary.gradient.active">Continuer vos achats</a></td>
+                            <td colspan="3" align="right"><a href="#" class="btn btn-success .btn-primary.gradient:active, .btn-primary.gradient.active">Commander</a></td>
+                            <td th:text="'Total ' +( (${session.panier} == null)? '0' : (${session.panier.total}) ) + ' €'"/>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+                
+           
+          
+            
+            
+        <!-- The popover content -->
+            
+        <div id="popover" style="display: none">
+            <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a href="#"><span class="glyphicon glyphicon-remove"></span></a>
+        </div>
+            
+        <!-- JavaScript includes -->
+            
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> 
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/customjs.js"></script>
+            
+            
+    </body>
+</html>

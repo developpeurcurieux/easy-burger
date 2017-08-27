@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+    
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org" >
+          
+    <head th:replace="template :: head" />
+        
+      
+    <body>
+        
+        <header th:replace="template :: header" />
+            
+        <div id="heading">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="heading-content">
+                            <h2>Nos Produits</h2>
+                            <span>Accueil  /  <a href="about-us.html">Produits</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+        <div id="products-post">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="product-heading">
+                            <h2>Faim ?</h2>
+                            <img src="images/under-heading.png" alt="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="filters col-md-12 col-xs-12">
+                        <ul id="filters" class="clearfix">
+                            <li><span class="filter" data-filter="all">Tous</span></li>
+                            <li><span class="filter" data-filter=".ginger">Entrées</span></li>
+                            <li><span class="filter" data-filter=".pizza">Plats</span></li>
+                            <li><span class="filter" data-filter=".pasta">Desserts</span></li>
+                            <li><span class="filter" data-filter=".drink">Boissons</span></li>
+                                
+                        </ul>
+                    </div>
+                </div>
+                    
+                <div class="container spacer">
+                    <table class="table table-striped " th:each="k : ${listeProduitParCategories}">
+                        
+                        <th:block th:switch="${k.key}">
+                            <!-- entrees -->
+                            <div th:case="entrees">
+                                <caption th:text="${k.key}"></caption>
+                                <thead>
+                                    <tr>
+                                        <th /><th>Nom</th><th>prix</th><th>Qte</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <tr th:each="e : ${k.value}" >
+                                        <td><img th:src="@{images/salade-chef.png}" class="img-rounded" width="70" height="70" /></td>
+                                        <td th:text="${e.nom}"></td>
+                                        <td th:text="${e.prixHT}+' €'"></td>
+                                            
+                                        <!--     
+                                             <input type="hidden" th:value="${e.reference}" id="id" name="idProduit"  />
+                                        -->  
+                                        <td>
+                                            <a class="btn btn-success .btn-primary.gradient:active, .btn-primary.gradient.active" 
+                                               th:href="@{/ajouterAuPanier(idProduit=${e.reference}, qteProduit=1)}">Ajouter</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </div>
+                            
+                            <!-- plats -->
+                            
+                            <div th:case="plats">
+                                <caption th:text="${k.key}"></caption>
+                                <thead>
+                                    <tr>
+                                        <th /><th>Nom</th><th>prix</th><th>Qte</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <tr th:each="e : ${k.value}" >
+                                        <td><img th:src="@{images/pizza-barbecue.png}" class="img-rounded" width="70" height="70" /></td>
+                                        <td th:text="${e.nom}"></td>
+                                        <td th:text="${e.prixHT}+' €'"></td>
+                                            
+                                        <!--     
+                                             <input type="hidden" th:value="${e.reference}" id="id" name="idProduit"  />
+                                        -->  
+                                        <td>
+                                            <a class="btn btn-success .btn-primary.gradient:active, .btn-primary.gradient.active" 
+                                               th:href="@{/ajouterAuPanier(idProduit=${e.reference}, qteProduit=1)}">Ajouter</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </div>
+                            
+                            <div th:case="desserts">
+                                <caption th:text="${k.key}"></caption>
+                                <thead>
+                                    <tr>
+                                        <th /><th>Nom</th><th>prix</th><th>Qte</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <tr th:each="e : ${k.value}" >
+                                        <td><img th:src="@{images/product8.jpg}" class="img-rounded" width="70" height="70" /></td>
+                                        <td th:text="${e.nom}"></td>
+                                        <td th:text="${e.prixHT}+' €'"></td>
+                                            
+                                        <!--     
+                                             <input type="hidden" th:value="${e.reference}" id="id" name="idProduit"  />
+                                        -->  
+                                        <td>
+                                            <a id="ajoutPanier" class="btn btn-success .btn-primary.gradient:active, .btn-primary.gradient.active" 
+                                               th:href="@{/ajouterAuPanier(idProduit=${e.reference}, qteProduit=1)}">Ajouter</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </div>
+                            
+                            <div th:case="boissons">
+                                <caption th:text="${k.key}"></caption>
+                                <thead>
+                                    <tr>
+                                        <th /><th>Nom</th><th>prix</th><th>Qte</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <tr th:each="e : ${k.value}" >
+                                        <td><img th:src="@{images/product4.jpg}" class="img-rounded" width="70" height="70" /></td>
+                                        <td th:text="${e.nom}"></td>
+                                        <td th:text="${e.prixHT}+' €'"></td>
+                                            
+                                        <!--     
+                                             <input type="hidden" th:value="${e.reference}" id="id" name="idProduit"  />
+                                        -->  
+                                        <td>
+                                            <a class="btn btn-success .btn-primary.gradient:active, .btn-primary.gradient.active" 
+                                               th:href="@{/ajouterAuPanier(idProduit=${e.reference}, qteProduit=1)}">Ajouter</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </div>
+                            
+                        </th:block>
+                    </table>
+                </div>        
+                    
+                    
+                    
+                <div class="pagination">
+                    <div class="row">   
+                        <div class="col-md-12">
+                            <ul>
+                                <li><a href="#">Previous</a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">Next</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>     
+            </div>
+        </div>
+            
+            
+        <footer th:replace="template :: footer" /> 
+            
+            
+      <script src="js/panier.js" />      
+    </body>
+</html>
